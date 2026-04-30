@@ -15,7 +15,7 @@
 
     <header>
         <div class="logo-container">
-            <img src="public/bitmap.svg" alt="Bonetto Cima" class="header-logo">
+            <img src="public/bc-logotipo.svg" alt="Bonetto Cima" class="header-logo">
         </div>
         <div class="header-title">
             <h1>BONETTO / CIMA</h1>
@@ -60,7 +60,7 @@
 
             <div class="servicios-grid-modern">
                 <!-- Card 1 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/messages-square.svg"
                         class="servicio-icon" alt="Asesoramiento">
                     <h3>ASESORAMIENTO</h3>
@@ -70,7 +70,7 @@
                     </div>
                 </div>
                 <!-- Card 2 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/pen-tool.svg"
                         class="servicio-icon" alt="Certificación">
                     <h3>CERTIFICACIÓN DE FIRMAS</h3>
@@ -79,7 +79,7 @@
                     </div>
                 </div>
                 <!-- Card 3 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/plane.svg" class="servicio-icon"
                         alt="Viaje">
                     <h3>AUTORIZACIÓN DE VIAJE</h3>
@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <!-- Card 4 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/car.svg" class="servicio-icon"
                         alt="Conducción">
                     <h3>AUTORIZACIÓN DE CONDUCCIÓN</h3>
@@ -99,7 +99,7 @@
                     </div>
                 </div>
                 <!-- Card 5 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/scroll-text.svg"
                         class="servicio-icon" alt="Escrituración">
                     <h3>ESCRITURACIÓN</h3>
@@ -108,7 +108,7 @@
                     </div>
                 </div>
                 <!-- Card 6 -->
-                <div class="servicio-item">
+                <div class="servicio-item" tabindex="0">
                     <img src="https://cdn.jsdelivr.net/npm/lucide-static@0.344.0/icons/stamp.svg" class="servicio-icon"
                         alt="Poderes">
                     <h3>PODERES</h3>
@@ -138,7 +138,7 @@
             </div>
             <div class="contacto-container">
                 <div class="contacto-info">
-                    <h3>Nuestros Datos</h3>
+                    <h3>Contacto</h3>
                     <p><strong>Dirección:</strong> Pasaje Groppo 1121</p>
                     <p><strong>Teléfono:</strong> +54 123 456 789</p>
                     <p><strong>Email:</strong> contacto@bonettocima.com</p>
@@ -171,6 +171,77 @@
         <span>Consultanos</span>
     </a>
 
+    <script>
+        const header = document.querySelector('header');
+        const serviciosSection = document.getElementById('servicios');
+
+        const navLinks = document.querySelectorAll('.nav-links a');
+        navLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    window.scrollTo({
+                        top: targetSection.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        window.addEventListener('scroll', () => {
+            const currentScrollY = window.scrollY;
+
+            // Calculamos el punto exacto donde empieza la sección de servicios
+            const hideThreshold = serviciosSection.offsetTop - header.offsetHeight;
+
+            // Si el scroll supera este punto, escondemos el header. Si es menor, lo mostramos.
+            if (currentScrollY >= hideThreshold) {
+                header.classList.add('header-hidden');
+            } else {
+                header.classList.remove('header-hidden');
+            }
+        });
+
+        const serviciosItems = document.querySelectorAll('.servicio-item');
+        serviciosItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                if (window.innerWidth <= 768) {
+                    if (this.classList.contains('active')) {
+                        this.classList.remove('active');
+                        this.blur();
+                    } else {
+                        serviciosItems.forEach(i => i.classList.remove('active'));
+                        this.classList.add('active');
+                    }
+                }
+            });
+        });
+
+        // Click outside closes cards
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && !e.target.closest('.servicio-item')) {
+                serviciosItems.forEach(i => i.classList.remove('active'));
+            }
+        });
+
+        const wspBtn = document.querySelector('.btn-wsp');
+        wspBtn.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!wspBtn.classList.contains('expanded')) {
+                    e.preventDefault();
+                    wspBtn.classList.add('expanded');
+                }
+            }
+        });
+
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && wspBtn.classList.contains('expanded') && !wspBtn.contains(e.target)) {
+                wspBtn.classList.remove('expanded');
+            }
+        });
+    </script>
 </body>
 
 </html>

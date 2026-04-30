@@ -9,13 +9,34 @@ html {
     /* Esto hace que al hacer clic en el menú, la página baje suavemente */
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+    background-color: #1B263B;
+    /* Color del footer para el overscroll abajo */
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 15px;
 }
 
 body {
     font-family: 'Outfit', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f9f9f9;
+    background-color: #FAF6ED;
+    /* Mantiene el color principal del cuerpo */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    /* Fallback */
+    min-height: 100dvh;
+    /* Altura dinámica para móviles */
+}
+
+main {
+    flex: 1;
 }
 
 /* 2. Encabezado y Navegación */
@@ -34,12 +55,19 @@ nav a {
     /* Applied directly to the anchor tag to override browser defaults */
     transition: color 0.3s ease;
     letter-spacing: 1px;
+    -webkit-tap-highlight-color: transparent;
+}
 
+nav a:visited,
+nav a:active {
+    color: #8e7515;
 }
 
 /* ¡Aquí está el hover del que hablábamos! */
-nav a:hover {
-    color: #2c3e50;
+@media (hover: hover) {
+    nav a:hover {
+        color: #2c3e50;
+    }
 }
 
 /* 3. Estilo general de las Secciones */
@@ -55,12 +83,11 @@ section h2 {
 }
 
 #servicios {
-    background-color: #ffffff;
+    background-color: #FAF6ED;
 }
 
 #galeria {
-    background-color: rgb(254, 233, 183);
-    ;
+    background-color: #E2D9C8;
 }
 
 .fotos {
@@ -83,7 +110,7 @@ section h2 {
 }
 
 #contacto {
-    background-color: #ffffff;
+    background-color: #FAF6ED;
 }
 
 .contacto-container {
@@ -98,7 +125,7 @@ section h2 {
 
 .contacto-info {
     flex: 1;
-    background-color: #f8f9fa;
+    background-color: #E2D9C8;
     padding: 30px;
     border-radius: 12px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
@@ -136,7 +163,7 @@ section h2 {
 }
 
 .horario-detalle {
-    background-color: #ffffff;
+    background-color: #FAF6ED;
     border-left: 5px solid #8e7515;
     padding: 15px;
     border-radius: 4px 8px 8px 4px;
@@ -183,7 +210,7 @@ section h2 {
 }
 
 footer {
-    background-color: #4c5051;
+    background-color: #1B263B;
     color: white;
     text-align: center;
     padding: 1.5rem;
@@ -191,7 +218,7 @@ footer {
 
 .btn-wsp {
     position: fixed;
-    bottom: 30px;
+    bottom: 80px;
     right: 30px;
     background-color: white;
     color: #25d366;
@@ -224,6 +251,35 @@ footer {
     /* Removed the brightness filter so the original whatsapp-icon.png colors are visible */
 }
 
+@media (max-width: 768px) {
+    .btn-wsp {
+        padding: 14px;
+        gap: 0;
+        border-radius: 50%;
+    }
+
+    .btn-wsp span {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition: max-width 0.4s ease, opacity 0.3s ease, margin-left 0.3s ease;
+        white-space: nowrap;
+        margin-left: 0;
+    }
+
+    .btn-wsp.expanded {
+        padding: 12px 24px;
+        border-radius: 50px;
+    }
+
+    .btn-wsp.expanded span {
+        max-width: 150px;
+        opacity: 1;
+        margin-left: 10px;
+        /* Simula el gap */
+    }
+}
+
 /* 4. Hero Section */
 #hero {
     background-image: linear-gradient(rgba(35, 45, 60, 0.75), rgba(35, 45, 60, 0.75)), url('public/hero_bg.png');
@@ -242,9 +298,9 @@ footer {
 
 /* 2. Encabezado y Navegación */
 header {
-    background-color: rgb(254, 233, 183);
+    background-color: #E2D9C8;
     color: #8e7515;
-    padding: 0.3rem 5%;
+    padding: 0.8rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -252,6 +308,11 @@ header {
     top: 0;
     z-index: 1000;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+header.header-hidden {
+    transform: translateY(-100%);
 }
 
 .logo-container {
@@ -263,7 +324,7 @@ header {
 }
 
 .header-logo {
-    height: 120px;
+    height: 50px;
     max-width: 180px;
     width: auto;
     object-fit: contain;
@@ -303,6 +364,42 @@ nav {
     /* Balances with logo-container */
     display: flex;
     justify-content: flex-end;
+}
+
+@media (max-width: 790px) {
+    header {
+        flex-direction: column;
+        padding: 1rem 5%;
+        gap: 15px;
+    }
+
+    .logo-container {
+        justify-content: center;
+    }
+
+    .header-logo {
+        height: 60px;
+    }
+
+    .header-title h1 {
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+    }
+
+    .header-title span {
+        font-size: 0.8rem;
+    }
+
+    nav {
+        justify-content: center;
+        width: 100%;
+    }
+
+    nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 
 /* Generic Section Header Styles */
@@ -359,13 +456,26 @@ nav {
     border-radius: 8px;
 }
 
-.servicio-item:hover {
+.servicio-item.active {
     background-color: #8e7515;
     /* Golden hover */
     transform: scale(1.05);
     z-index: 10;
     box-shadow: 0 15px 30px rgba(142, 117, 21, 0.3);
     border-color: #8e7515;
+    outline: none;
+    /* Remover outline azul feo del navegador en móviles */
+}
+
+@media (hover: hover) {
+    .servicio-item:hover {
+        background-color: #8e7515;
+        transform: scale(1.05);
+        z-index: 10;
+        box-shadow: 0 15px 30px rgba(142, 117, 21, 0.3);
+        border-color: #8e7515;
+        outline: none;
+    }
 }
 
 .servicio-icon {
@@ -377,10 +487,17 @@ nav {
     transition: filter 0.3s ease, transform 0.3s ease;
 }
 
-.servicio-item:hover .servicio-icon {
+.servicio-item.active .servicio-icon {
     filter: brightness(0) invert(1);
     /* Turns white on hover */
     transform: scale(1.1);
+}
+
+@media (hover: hover) {
+    .servicio-item:hover .servicio-icon {
+        filter: brightness(0) invert(1);
+        transform: scale(1.1);
+    }
 }
 
 .servicio-item h3 {
@@ -392,8 +509,14 @@ nav {
     text-transform: uppercase;
 }
 
-.servicio-item:hover h3 {
+.servicio-item.active h3 {
     color: white;
+}
+
+@media (hover: hover) {
+    .servicio-item:hover h3 {
+        color: white;
+    }
 }
 
 .servicio-desc {
@@ -408,10 +531,18 @@ nav {
     margin-top: 0;
 }
 
-.servicio-item:hover .servicio-desc {
+.servicio-item.active .servicio-desc {
     max-height: 150px;
     opacity: 1;
     margin-top: 15px;
+}
+
+@media (hover: hover) {
+    .servicio-item:hover .servicio-desc {
+        max-height: 150px;
+        opacity: 1;
+        margin-top: 15px;
+    }
 }
 
 .hero-split {
@@ -470,6 +601,10 @@ nav {
 }
 
 @media (max-width: 768px) {
+    #hero {
+        background-attachment: scroll;
+    }
+
     .hero-split {
         flex-direction: column;
         gap: 15px;
