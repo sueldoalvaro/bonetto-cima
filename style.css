@@ -136,6 +136,8 @@ section h2 {
 
 .contacto-info h3 {
     font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
     color: #2c3e50;
     margin-bottom: 20px;
 }
@@ -158,6 +160,8 @@ section h2 {
 
 .horarios-card h3 {
     font-size: 1.8rem;
+    font-weight: 300;
+    letter-spacing: 2px;
     color: #2c3e50;
     margin-bottom: 20px;
 }
@@ -214,6 +218,13 @@ footer {
     color: white;
     text-align: center;
     padding: 1.5rem;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+footer p {
+    opacity: 0.8;
+    font-size: 0.9rem;
 }
 
 .btn-wsp {
@@ -417,9 +428,9 @@ nav {
 
 .section-header h2 {
     font-size: 2.2rem;
-    font-weight: 600;
+    font-weight: 300;
     color: #2c3e50;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
 }
 
 .header-line {
@@ -502,7 +513,7 @@ nav {
 
 .servicio-item h3 {
     font-size: 1rem;
-    font-weight: 600;
+    font-weight: 300;
     letter-spacing: 1px;
     color: #2c3e50;
     transition: color 0.3s ease;
@@ -576,7 +587,7 @@ nav {
 
 .hero-half h2 {
     font-size: 3rem;
-    font-weight: 600;
+    font-weight: 300;
     margin-bottom: 20px;
     letter-spacing: 3px;
     color: white;
